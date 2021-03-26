@@ -10,8 +10,8 @@ const App = () => {
   return (
     <NavigationContainer>
       <stack.Navigator>
-        <stack.Screen name='home' component={homeScreen} />
-        <stack.Screen name='job' component={jobScreen}/>
+        <stack.Screen name='home' component={homeScreen}  options={{ title: 'GraphQL.Jobs' }}/>
+        <stack.Screen name='jobScreen' component={jobScreen}  options={{ title: 'Details' }}/>
       </stack.Navigator>
     </NavigationContainer>
   )

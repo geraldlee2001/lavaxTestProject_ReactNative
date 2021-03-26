@@ -18,7 +18,7 @@ const homeScreen = ({navigation}) => {
     <ApolloProvider client={client}>
       <View>
         <Header />
-        <JobList />
+          <JobList navigation={navigation}/>
       </View>
       </ApolloProvider>
     </SafeAreaProvider>

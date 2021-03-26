@@ -1,22 +1,26 @@
 import { Link } from '@react-navigation/native';
 import React from 'react'
 const { StyleSheet } =require("react-native") ;
-const { View, Text,TouchableOpacity,FlatList,renderItem} =require('react-native') ;
-import { ListItem } from 'react-native-elements'
-import jobScreen from '../screen/jobScreen';
+const { View, Text,TouchableOpacity,Image} =require('react-native') ;
+import { ListItem, Avatar } from 'react-native-elements'
 
-const Job = ({ item, location }) => {
-    if (location !== "") {
-        item=item.matches(item.location===location)
-    }
+const Job = ({ item, navigation }) => {
+  const handlePassProps = () =>{
+    navigation.navigate('jobScreen', {
+      item
+    })
+  }
+  const logoURL =item.company.websiteUrl.replace("http://", "")
+
     return (
-        <TouchableOpacity styles={style.listItem} >
-            <View>
-                <ListItem bottomDivider >
-                    <ListItem.Content>
-                        <ListItem.Title>{item.title}</ListItem.Title>
-                        <ListItem.Subtitle>{item.company.name}</ListItem.Subtitle>
-                    </ListItem.Content>
+        <TouchableOpacity styles={style.listItem} onPress={handlePassProps}>
+        <View>
+          <ListItem bottomDivider >
+            <Avatar source={{uri: `https://logo.clearbit.com/${logoURL}`}} />
+                  <ListItem.Content>
+                    <ListItem.Title>{item.title}</ListItem.Title>
+                    <ListItem.Subtitle>{item.company.name}</ListItem.Subtitle>
+                  </ListItem.Content>
                 </ListItem>
             </View>
         </TouchableOpacity>

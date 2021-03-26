@@ -1,7 +1,7 @@
 import React from 'react'
-const { View, Text } = require('react-native');
+const { View, Text, StyleSheet} = require('react-native');
 import Icon from 'react-native-vector-icons/FontAwesome';
-const { StyleSheet } =require("react-native") ;
+
 
 const Header = () => {
     return (
