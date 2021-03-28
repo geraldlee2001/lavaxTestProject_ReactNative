@@ -8,18 +8,24 @@ import {useJobsListHook,useLocationHook,useCityHook} from './hooks'
 
 const JobList = ({ navigation }) => {
   let city, searchBar
+
   const [location, setLocation] = useState("")
   const [citySlug, setCitySlug] = useState("")
   const { jobLoading, jobError, jobData, jobRefetch } = useJobsListHook()
   const { locationLoading, locationError, locationData, locationRefetch } = useLocationHook(location)
   const { cityLoading, cityError, cityData, cityRefetch } = useCityHook(citySlug)
+
+  //change location state
   const handleChangeText = (e) => {
     setLocation(e)
-    locationRefetch(e)
   }
-    const handleLocationSlug = (e) => {
-      setCitySlug(e)
+  
+  //change citySlug state
+  const handleLocationSlug = (e) => {
+    setCitySlug(e)
   }
+
+  //refetch data
   useEffect(() => {
     if (!cityData) {
       return 
@@ -29,6 +35,7 @@ const JobList = ({ navigation }) => {
     cityData
   ])
 
+  //passing data to result screen 
   const handleResult = () => {
     searchBar.clear()
     navigation.navigate('resultScreen',  cityData )
@@ -39,13 +46,13 @@ const JobList = ({ navigation }) => {
     if (locationLoading) return null;
     if (locationError) return <Text>`Error! Location ${locationError}`</Text>;
 
+  //clear search result flatlist
     let listViewRef
     const handleBackTop = () => {
       listViewRef.scrollToOffset({ offset: 0, animated: true })
   }
   
   const data = jobData
-  
     return (
       <View>
         <SearchBar
@@ -82,7 +89,6 @@ const JobList = ({ navigation }) => {
             color='#ff80ff'
           />
         </TouchableOpacity>
-        
       </View>
     )
 }

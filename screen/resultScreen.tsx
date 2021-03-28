@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList } from 'react-native'
+import { View, FlatList } from 'react-native'
 import Job from '../components/Job'
 
 const resultScreen = ({ route, navigation }) => {
@@ -14,7 +14,6 @@ const resultScreen = ({ route, navigation }) => {
                 )}
             />
         </View>
-     
     )
 }
 

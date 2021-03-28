@@ -32,7 +32,6 @@ export const useLocationHook = (location) => {
 }
 
 export const useCityHook = (cityslug) => {
-
     const { loading, error, data,refetch } = useQuery(getCity, {
         variables: {
             input:{

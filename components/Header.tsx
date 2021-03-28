@@ -1,11 +1,8 @@
 import React from 'react'
 const { View, Text, StyleSheet} = require('react-native');
-import Icon from 'react-native-vector-icons/FontAwesome';
-
 
 const Header = () => {
     return (
-        
         <View style={style.header}>
             <Text style={style.text}>
                 GraphQL jobs
@@ -20,6 +17,7 @@ const style = StyleSheet.create({
         padding: 15,
         backgroundColor: "#0a42a3"
     },
+    
     text: {
         color: '#fff',
         fontSize: 23,
