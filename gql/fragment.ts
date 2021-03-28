@@ -16,6 +16,7 @@ fragment fragmentJobs on Job{
   countries{
     name
     slug
+    isoCode
   }
   remotes{
     name

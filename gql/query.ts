@@ -11,19 +11,19 @@ export const getJob = gql`
 `;
 
 export const getLocation = gql`
-query getLocation($input:LocationsInput){
-  Locations(input: $input){
+query Locations($input: LocationsInput!){
+  locations(input: $input) {
     id
-    slug
-    name
     type
+    name
+    slug
   }
 }
 `
 
 export const getCity= gql`
-query getCity($input:LocationsInput){
-  City(input: $input){
+query getCity($input:LocationInput!){
+  city(input: $input){
     id
     name
     slug

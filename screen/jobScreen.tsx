@@ -1,29 +1,45 @@
 import React, { useCallback }from 'react'
-const { View, Text, Button, Linking, Alert, ScrollView, StyleSheet } = require('react-native')
+const { View, Text, Button, Linking, Alert, ScrollView, StyleSheet,useWindowDimensions  } = require('react-native')
+import HTML from "react-native-render-html";
+import { Avatar } from 'react-native-elements'
 import Tags from '../components/Tags' 
+import Country from '../components/Country'
 
 const jobScreen = ({ route, navigation }) => {
     const { item } = route.params;
     const url= item.applyUrl
     const handlePress = useCallback(async () => {
-        // Checking if the link is supported for links with custom URL scheme.
         const supported = await Linking.canOpenURL(url);
     
         if (supported) {
-          // Opening the link with some app, if the URL scheme is "http" the web link should be opened
-          // by some browser in the mobile
           await Linking.openURL(url);
         } else {
           Alert.alert(`Don't know how to open this URL: ${url}`);
         }
     }, [url]);
+    const logoURL = item.company.websiteUrl.replace("http://", "")
+    const description=item.description.replace(/#|\*/g,"")
     return (
-        <ScrollView>
+        <ScrollView style={{}}>
             <View>
+                
+                <Text style={style.subtitle}>
+                    <Avatar
+                        source={{ uri: `https://logo.clearbit.com/${ logoURL }` }}
+                        size="small"
+                        containerStyle={{flex: 1, marginRight: 50,marginBottom:15}}
+                    />
+                           {item.company.name} is hearing a
+                </Text>
                 <Text style={style.title}>{item.title}</Text>
-                <Text style={style.company}>{item.company.name}</Text>
-                <Text style={style.description}>{item.description}</Text>
-                <Tags items={item.tags}/>
+                {/* <Text style={style.subtitle}>Company Name</Text> */}
+                <Text style={style.description}>{description}</Text>
+                <Text style={style.subtitle}>Tags</Text>
+                <Tags items={item.tags} />
+                <Text style={style.subtitle}>Country</Text>
+                <Country countries={item.cities}/>
+                <Text style={style.subtitle}>Commitment</Text>
+                <Text style={style.content}>{item.commitment.title}</Text>
                 <Button title="Apply Now" onPress={handlePress}> </Button>
             </View>
         </ScrollView>
@@ -31,17 +47,24 @@ const jobScreen = ({ route, navigation }) => {
 }
 const style = StyleSheet.create({
     title: {
+        color: 'black',
         fontSize:30,
         padding: 5,
         textAlign: 'center',
-        backgroundColor:'purple',
+        fontWeight: 'bold',
     },
-    company: {
+    content: {
         fontSize: 20,
         textAlign:'center',
     },
     description: {
-        fontSize:15,
+        fontSize:18,
+    },
+
+    subtitle: {
+        marginTop:5,
+        textAlign:'center',
+        fontSize:25,
     }
 })
 

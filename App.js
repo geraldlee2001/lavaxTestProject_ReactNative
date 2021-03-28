@@ -3,17 +3,27 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from '@react-navigation/stack'
 import homeScreen from './screen/homeScreen'
 import jobScreen from './screen/jobScreen'
+import resultScreen from './screen/resultScreen'
+import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+const client = new ApolloClient({
+  uri: 'https://api.graphql.jobs/',
+  cache: new InMemoryCache()
+});
 
 const stack = createStackNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <stack.Navigator>
-        <stack.Screen name='home' component={homeScreen}  options={{ title: 'GraphQL.Jobs' }}/>
-        <stack.Screen name='jobScreen' component={jobScreen}  options={{ title: 'Details' }}/>
-      </stack.Navigator>
-    </NavigationContainer>
+    <ApolloProvider client={client}>
+      <NavigationContainer>
+        <stack.Navigator>
+          <stack.Screen name='home' component={homeScreen}  options={{ title: 'GraphQL.Jobs' }}/>
+          <stack.Screen name='jobScreen' component={jobScreen} options={{ title: 'Details' }} />
+          <stack.Screen name='resultScreen' component={resultScreen}  options={{ title: 'Result' }}/>
+        </stack.Navigator>
+      </NavigationContainer>
+    </ApolloProvider>
   )
 }
 
