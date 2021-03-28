@@ -18,7 +18,7 @@ const App = () => {
     <ApolloProvider client={client}>
       <NavigationContainer>
         <stack.Navigator>
-          <stack.Screen name='home' component={homeScreen}  options={{ title: 'GraphQL.Jobs' }}/>
+          <stack.Screen name='home' component={homeScreen}  options={{ title: '' }}/>
           <stack.Screen name='jobScreen' component={jobScreen} options={{ title: 'Details' }} />
           <stack.Screen name='resultScreen' component={resultScreen}  options={{ title: 'Result' }}/>
         </stack.Navigator>

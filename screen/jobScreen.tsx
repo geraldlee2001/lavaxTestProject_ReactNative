@@ -32,10 +32,9 @@ const jobScreen = ({ route, navigation }) => {
                            {item.company.name} is hearing a
                 </Text>
                 <Text style={style.title}>{item.title}</Text>
-                {/* <Text style={style.subtitle}>Company Name</Text> */}
                 <Text style={style.description}>{description}</Text>
                 <Text style={style.subtitle}>Tags</Text>
-                <Tags items={item.tags} />
+                <Text style={style.subtitle}><Tags items={item.tags} /></Text>
                 <Text style={style.subtitle}>Country</Text>
                 <Country countries={item.cities}/>
                 <Text style={style.subtitle}>Commitment</Text>

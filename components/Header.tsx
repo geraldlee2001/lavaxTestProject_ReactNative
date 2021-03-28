@@ -8,7 +8,7 @@ const Header = () => {
         
         <View style={style.header}>
             <Text style={style.text}>
-                GraphQL.jobs
+                GraphQL jobs
             </Text>
         </View>
     )
