@@ -3,6 +3,7 @@ const { View, Text, Button, Linking, Alert, ScrollView, StyleSheet  } = require(
 import { Avatar } from 'react-native-elements'
 import Tags from '../components/Tags' 
 import Country from '../components/Country'
+import Moment from 'react-moment';
 
 const jobScreen = ({ route, navigation }) => {
     const { item } = route.params;
@@ -19,11 +20,12 @@ const jobScreen = ({ route, navigation }) => {
     }, [url]);
 
     const logoURL = item.company.websiteUrl.replace("http://", "")
-    const description=item.description.replace(/#|\*/g,"")
+    const description = item.description.replace(/#|\*/g, "")
+
     return (
-        <ScrollView style={{}}>
+        <ScrollView>
             <View>
-                <Text style={style.subtitle}>
+                <Text style={[style.subtitle, { backgroundColor: '#87CEEB' }]}>
                     <Avatar
                         source={{ uri: `https://logo.clearbit.com/${ logoURL }` }}
                         size="small"
@@ -31,15 +33,23 @@ const jobScreen = ({ route, navigation }) => {
                     />
                     {item.company.name} is hearing a
                 </Text>
-                <Text style={style.title}>{item.title}</Text>
+                <Text style={[style.title, { backgroundColor: '#87CEEB' } ]}>{item.title}</Text>
                 <Text style={style.description}>{description}</Text>
                 <Text style={style.subtitle}>Tags</Text>
-                <Text style={style.subtitle}><Tags items={item.tags} /></Text>
+                <Text style={style.subtitle}><Tags tags={item.tags} /></Text>
                 <Text style={style.subtitle}>Country</Text>
                 <Text style={style.content}><Country countries={item.cities}/></Text>
                 <Text style={style.subtitle}>Commitment</Text>
                 <Text style={style.content}>{item.commitment.title}</Text>
-                <Button title="Apply Now" onPress={handlePress}> </Button>
+                <Text style={style.subtitle}>Created at</Text>
+                <Text style={style.content}>
+                    <Moment element={Text} fromNow>{new Date(item.createdAt)}</Moment>
+                </Text>
+                <Button
+                    title="Apply Now"
+                    onPress={handlePress}
+                    color='#f194ff'>
+                </Button>
             </View>
         </ScrollView>
     )

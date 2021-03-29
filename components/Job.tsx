@@ -35,7 +35,7 @@ const Job = ({ item, countries, navigation }) => {
           <Text style={style.listItemText}>
             <Country countries={item.remotes} />
           </Text>
-          <Text style={style.listItemText}><Tags items={tag}/></Text>
+          <Text style={style.listItemText}><Tags tags={tag}/></Text>
         </Card>
       </View>
     </TouchableOpacity>

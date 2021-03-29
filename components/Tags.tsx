@@ -1,11 +1,11 @@
 import React from 'react'
 import {View,Text,StyleSheet} from 'react-native'
 
-const Tags = ({ items }) => {
+const Tags = ({ tags }) => {
     return (
-        items.map((item, index) => (
-            <View style={{ padding: 10, flex: 1 }}>            
-                <Text key={index} style={styles.tags}>{item.name}</Text>
+        tags.map((tag, index) => (
+            <View key={index} style={{ padding: 10, flex: 1 }}>            
+                <Text key={index} style={styles.tags}>{tag.name}</Text>
             </View>
         ))
     )
@@ -18,7 +18,6 @@ const styles = StyleSheet.create({
         width: 100,
         height: 20,
         textAlign: 'center',
-        padding:0,
     }
 })
 
